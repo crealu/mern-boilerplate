@@ -4,7 +4,7 @@
 
 function writeBabelRC {
   str='{\n\t"presets": [\n\t\t"@babel/preset-env", \n\t\t"@babel/preset-react"\n\t]\n}'
-  echo $str > test.txt
+  echo $str > .babel.rc
 }
 
 function writeServerJS {
@@ -23,9 +23,9 @@ function writeServerJS {
     fi
 
     if [ "$n" -gt 4 ]; then
-      echo "${mainstr2};" >> test.txt
+      echo "${mainstr2};" >> server.js
     else
-      echo "${mainstr};" >> test.txt
+      echo "${mainstr};" >> server.js
     fi
 
     n=$((n + 1))

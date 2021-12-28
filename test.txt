@@ -1,6 +1,6 @@
 {
 	"presets": [
-		"@babel/preset-env", 
+		"@babel/preset-env",
 		"@babel/preset-react"
 	]
 }
@@ -12,3 +12,17 @@ const uri = require('keyconfig').MongoURI;
 const port = process.env.PORT || 9000;
 const app = express();
 const client = new MongoClient(uri);
+
+async function connectToDB() {
+	await client.connect( err => {
+    err ? console.log(err) : console.log('Connected to database');
+  });
+}
+connectToDB();
+
+const pathToBuild = path.join(__dirname, 'build');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(pathToBuild));
+app.get('/', (req, res) => { res.sendFile(pathToBuild, 'index.html'); });
+app.listen(port, () => console.log('Listening on ' + port));

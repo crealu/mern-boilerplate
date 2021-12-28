@@ -25,13 +25,32 @@ function writeServerJS {
     else
       echo "${mainstr};" >> test.txt
     fi
-    
+
     n=$((n + 1))
+  done
+
+  echo "\nasync function connectToDB() {\n\tawait client.connect( err => {
+    err ? console.log(err) : console.log('Connected to database');
+  });\n}" >> test.txt
+  echo "connectToDB();" >> test.txt
+  echo "\nconst pathToBuild = path.join(__dirname, 'build');\n" >> test.txt
+
+  appMethods=(
+    "app.use(bodyParser.urlencoded({ extended: true }));"
+    "app.use(express.static(pathToBuild));"
+    "app.get('/', (req, res) => {
+      res.sendFile(pathToBuild, 'index.html');
+    });"
+    "app.listen(port, () => console.log('Listening on ' + port));"
+  )
+
+  for am in "${appMethods[@]}"; do
+    echo $am >> test.txt
   done
 }
 
 function func {
-  writeBabelRC
+  #writeBabelRC
   writeServerJS
   echo "Finished writing files"
 }
