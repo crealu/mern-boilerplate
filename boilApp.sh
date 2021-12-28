@@ -26,8 +26,7 @@ function fullskel {
 
     mkdir build
 
-    echo "finishec initializing files and directories"
-
-    node -v
-    npm -v
+    echo "Finished creating file structure and installing dependencies"
 }
+
+fullskel
