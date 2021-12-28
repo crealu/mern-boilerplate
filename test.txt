@@ -1,0 +1,14 @@
+{
+	"presets": [
+		"@babel/preset-env", 
+		"@babel/preset-react"
+	]
+}
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const MongoClient = require('mongodb').MongoClient;
+const uri = require('keyconfig').MongoURI;
+const port = process.env.PORT || 9000;
+const app = express();
+const client = new MongoClient(uri);
