@@ -23,12 +23,31 @@ function writeServerJS {
     fi
 
     if [ "$n" -gt 4 ]; then
-      echo "${mainstr2};" >> server.js
+      echo "${mainstr2};" >> test.txt
     else
-      echo "${mainstr};" >> server.js
+      echo "${mainstr};" >> test.txt
     fi
 
     n=$((n + 1))
+  done
+
+  echo "\nasync function connectToDB() {\n\tawait client.connect( err => {
+    err ? console.log(err) : console.log('Connected to database');
+  });\n}" >> test.txt
+  echo "connectToDB();" >> test.txt
+  echo "\nconst pathToBuild = path.join(__dirname, 'build');\n" >> test.txt
+
+  appMethods=(
+    "app.use(bodyParser.urlencoded({ extended: true }));"
+    "app.use(express.static(pathToBuild));"
+    "app.get('/', (req, res) => {
+      res.sendFile(pathToBuild, 'index.html');
+    });"
+    "app.listen(port, () => console.log('Listening on ' + port));"
+  )
+
+  for am in "${appMethods[@]}"; do
+    echo $am >> test.txt
   done
 }
 
