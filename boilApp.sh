@@ -23,9 +23,9 @@ function writeServerJS {
     fi
 
     if [ "$n" -gt 4 ]; then
-      echo "${mainstr2};" >> test.txt
+      echo "${mainstr2};" >> server.js
     else
-      echo "${mainstr};" >> test.txt
+      echo "${mainstr};" >> server.js
     fi
 
     n=$((n + 1))
@@ -33,9 +33,9 @@ function writeServerJS {
 
   echo "\nasync function connectToDB() {\n\tawait client.connect( err => {
     err ? console.log(err) : console.log('Connected to database');
-  });\n}" >> test.txt
-  echo "connectToDB();" >> test.txt
-  echo "\nconst pathToBuild = path.join(__dirname, 'build');\n" >> test.txt
+  });\n}" >> server.js
+  echo "connectToDB();" >> server.js
+  echo "\nconst pathToBuild = path.join(__dirname, 'build');\n" >> server.js
 
   appMethods=(
     "app.use(bodyParser.urlencoded({ extended: true }));"
@@ -47,13 +47,62 @@ function writeServerJS {
   )
 
   for am in "${appMethods[@]}"; do
-    echo $am >> test.txt
+    echo $am >> server.js
   done
+}
+
+function writeWebpackConfig {
+  echo "const path = require('path');
+    const HtmlWebPackPlugin = require('html-webpack-plugin');
+
+    module.exports = {
+      output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: 'bundle.js'
+      },
+      resolve: {
+        modules: [path.join(__dirname, 'src'), 'node_modules'],
+        alias: {
+          react: path.join(__dirname, 'node_modules', 'react')
+        }
+      },
+      module: {
+        rules: [
+          {
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader'
+            },
+          },
+          {
+            test: /\.css/,
+            use: [
+              {
+                loader: 'style-loader'
+              },
+              {
+                loader: 'css-loader'
+              }
+            ]
+          }
+        ]
+      },
+      plugins: [
+        new HtmlWebPackPlugin({
+          template: './src/index.html'
+        })
+      ],
+      devServer: {
+        port: 9000
+      }
+    }" >> webpack.config.js
 }
 
 function writeFiles {
   writeBabelRC
   writeServerJS
+  writeWebpackConfig
 }
 
 function fullskel {
