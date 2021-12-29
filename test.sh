@@ -100,7 +100,36 @@ function writeWebpackConfig {
 function writeKeyConfig {
   echo "module.exports = {
     MongoURI: 'mongodb+srv://user:password@cluster0.0wmx5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-  }" >> keyconfig.js
+  }" >> test.txt
+}
+
+function writeSrcFiles {
+  echo '<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Bare Bones App</title>
+    </head>
+    <body>
+      <div id="root"></div>
+    </body>
+    </html>' >> test.txt
+
+  echo "import React from 'react';
+    import { render } from 'react-dom';
+    import App from './app';
+
+    render(<App />, document.getElementById('root'));" >> test.txt
+
+  echo "const App = () => {
+      return (
+        <h1 style={{backgroundColor: 'red'}}
+            onClick={() => {console.log('hi')}}
+        >Just Bones</h1>
+      )
+    }
+
+    export default App;" >> test.txt
 }
 
 function func {
