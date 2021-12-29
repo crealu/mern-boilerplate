@@ -4,7 +4,13 @@
 
 function writeBabelRC {
   str='{\n\t"presets": [\n\t\t"@babel/preset-env", \n\t\t"@babel/preset-react"\n\t]\n}'
-  echo $str > .babel.rc
+  echo $str >> .babel.rc
+}
+
+function writeKeyConfig {
+  echo "module.exports = {
+    MongoURI: 'mongodb+srv://user:password@cluster0.0wmx5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+  }" >> keyconfig.js
 }
 
 function writeServerJS {
@@ -103,6 +109,7 @@ function writeFiles {
   writeBabelRC
   writeServerJS
   writeWebpackConfig
+  writeKeyConfig
 }
 
 function fullskel {

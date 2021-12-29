@@ -97,10 +97,17 @@ function writeWebpackConfig {
     }" >> test.txt
 }
 
+function writeKeyConfig {
+  echo "module.exports = {
+    MongoURI: 'mongodb+srv://user:password@cluster0.0wmx5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+  }" >> keyconfig.js
+}
+
 function func {
   #writeBabelRC
   # writeServerJS
-  writeWebpackConfig
+  # writeWebpackConfig
+  writeKeyConfig
   echo "Finished writing files"
 }
 
