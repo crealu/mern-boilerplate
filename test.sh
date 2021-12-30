@@ -51,92 +51,97 @@ function writeServerJS {
 
 function writeWebpackConfig {
   echo "const path = require('path');
-    const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-    module.exports = {
-      output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js'
+module.exports = {
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    alias: {
+      react: path.join(__dirname, 'node_modules', 'react')
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        },
       },
-      resolve: {
-        modules: [path.join(__dirname, 'src'), 'node_modules'],
-        alias: {
-          react: path.join(__dirname, 'node_modules', 'react')
-        }
-      },
-      module: {
-        rules: [
+      {
+        test: /\.css/,
+        use: [
           {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader'
-            },
+            loader: 'style-loader'
           },
           {
-            test: /\.css/,
-            use: [
-              {
-                loader: 'style-loader'
-              },
-              {
-                loader: 'css-loader'
-              }
-            ]
+            loader: 'css-loader'
           }
         ]
-      },
-      plugins: [
-        new HtmlWebPackPlugin({
-          template: './src/index.html'
-        })
-      ],
-      devServer: {
-        port: 9000
       }
-    }" >> test.txt
+    ]
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: './src/index.html'
+    })
+  ],
+  devServer: {
+    port: 9000
+  }
+}" >> test.txt
 }
 
 function writeKeyConfig {
-  echo "module.exports = {
-    MongoURI: 'mongodb+srv://user:password@cluster0.0wmx5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-  }" >> test.txt
+  echo "
+module.exports = {
+  MongoURI: 'mongodb+srv://user:password@cluster0.0wmx5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+}" >> test.txt
 }
 
 function writeSrcFiles {
-  echo '<!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>Bare Bones App</title>
-    </head>
-    <body>
-      <div id="root"></div>
-    </body>
-    </html>' >> test.txt
+  echo '
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bare Bones App</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>' >> test.txt
 
-  echo "import React from 'react';
-    import { render } from 'react-dom';
-    import App from './app';
+  echo "
+import React from 'react';
+import { render } from 'react-dom';
+import App from './app';
 
-    render(<App />, document.getElementById('root'));" >> test.txt
+render(<App />, document.getElementById('root'));" >> test.txt
 
-  echo "const App = () => {
-      return (
-        <h1 style={{backgroundColor: 'red'}}
-            onClick={() => {console.log('hi')}}
-        >Just Bones</h1>
-      )
-    }
+  echo "
+const App = () => {
+  return (
+    <h1 style={{backgroundColor: 'red'}}
+        onClick={() => {console.log('hi')}}
+    >Just Bones</h1>
+  )
+}
 
-    export default App;" >> test.txt
+export default App;" >> test.txt
 }
 
 function func {
-  #writeBabelRC
-  # writeServerJS
-  # writeWebpackConfig
+  writeBabelRC
+  writeServerJS
+  writeWebpackConfig
   writeKeyConfig
+  writeSrcFiles
   echo "Finished writing files"
 }
 

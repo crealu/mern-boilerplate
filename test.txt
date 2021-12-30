@@ -1,6 +1,6 @@
 {
 	"presets": [
-		"@babel/preset-env",
+		"@babel/preset-env", 
 		"@babel/preset-react"
 	]
 }
@@ -27,47 +27,78 @@ app.use(express.static(pathToBuild));
 app.get('/', (req, res) => { res.sendFile(pathToBuild, 'index.html'); });
 app.listen(port, () => console.log('Listening on ' + port));
 const path = require('path');
-    const HtmlWebPackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-    module.exports = {
-      output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js'
+module.exports = {
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    alias: {
+      react: path.join(__dirname, 'node_modules', 'react')
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        },
       },
-      resolve: {
-        modules: [path.join(__dirname, 'src'), 'node_modules'],
-        alias: {
-          react: path.join(__dirname, 'node_modules', 'react')
-        }
-      },
-      module: {
-        rules: [
+      {
+        test: /\.css/,
+        use: [
           {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader'
-            },
+            loader: 'style-loader'
           },
           {
-            test: /\.css/,
-            use: [
-              {
-                loader: 'style-loader'
-              },
-              {
-                loader: 'css-loader'
-              }
-            ]
+            loader: 'css-loader'
           }
         ]
-      },
-      plugins: [
-        new HtmlWebPackPlugin({
-          template: './src/index.html'
-        })
-      ],
-      devServer: {
-        port: 9000
       }
-    }
+    ]
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: './src/index.html'
+    })
+  ],
+  devServer: {
+    port: 9000
+  }
+}
+
+module.exports = {
+  MongoURI: 'mongodb+srv://user:password@cluster0.0wmx5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bare Bones App</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
+
+import React from 'react';
+import { render } from 'react-dom';
+import App from './app';
+
+render(<App />, document.getElementById('root'));
+
+const App = () => {
+  return (
+    <h1 style={{backgroundColor: 'red'}}
+        onClick={() => {console.log('hi')}}
+    >Just Bones</h1>
+  )
+}
+
+export default App;
