@@ -154,7 +154,7 @@ function writeFiles {
 }
 
 function fullskel {
-    echo "creating full stack app with react and node..."
+    echo "Setting up full stack (MERN) app with NPM..."
 
     npm init -y
     npm install express mongodb body-parser --save
@@ -163,23 +163,32 @@ function fullskel {
     npm install @babel/core @babel/preset-env @babel/preset-react babel-loader css-loader style-loader --save-dev
     npm install webpack webpack-cli webpack-dev-server html-webpack-plugin --save-dev
 
+    echo "Finished installing dependencies"
+    echo "Creating configuration files..."
+
     touch server.js
     touch webpack.config.js
     touch keyconfig.js
     touch .babelrc
     touch .gitignore
 
+    echo "Finished creating configuration files"
+    echo "Creating frontend source files..."
+
     mkdir src
     touch src/app.js
     touch src/index.js
     touch src/style.css
     touch src/index.html
-
     mkdir build
+
+    echo "Finished creating frontend source files"
+    echo "Writing files..."
 
     writeFiles
 
-    echo "Finished creating file structure and installing dependencies"
+    echo "Finished writing files"
+    echo "Application setup completed"
 }
 
 fullskel
