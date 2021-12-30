@@ -134,12 +134,23 @@ function writeSrcFiles {
     export default App;" >> src/app.js
 }
 
+function updatePackageJSON {
+  sed -i.bak '7i\
+  \    "start": "node server",\
+  \    "build": "webpack --mode=production",\
+  \    "devf": "webpack serve -mode=development --open --hot",\
+  \    "devb": "nodemon server",\
+  ' test.txt
+}
+
 function writeFiles {
   writeBabelRC
   writeServerJS
   writeWebpackConfig
   writeKeyConfig
   writeSrcFiles
+  updatePackageJSON
+  echo "Finished writing files"
 }
 
 function fullskel {

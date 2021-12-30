@@ -136,13 +136,28 @@ const App = () => {
 export default App;" >> test.txt
 }
 
+function updatePackageJSON {
+  #awk 'NR==3{print "insertion"}1' test.txt
+  # sed -i.bak '3i\
+  # insertion\
+  # ' test.txt
+
+  sed -i.bak '7i\
+  \    "start": "node server",\
+  \    "build": "webpack --mode=production",\
+  \    "devf": "webpack serve -mode=development --open --hot",\
+  \    "devb": "nodemon server",\
+  ' test.txt
+}
+
 function func {
-  writeBabelRC
-  writeServerJS
-  writeWebpackConfig
-  writeKeyConfig
-  writeSrcFiles
-  echo "Finished writing files"
+  # writeBabelRC
+  # writeServerJS
+  # writeWebpackConfig
+  # writeKeyConfig
+  # writeSrcFiles
+  updatePackageJSON
+  #echo "Finished writing files"
 }
 
 func

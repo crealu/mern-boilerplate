@@ -4,10 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
-    "build": "webpack --mode=production",
-    "devf": "webpack serve -mode=development --open --hot",
-    "devb": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
