@@ -56,6 +56,7 @@ function writeWebpackConfig {
     const HtmlWebPackPlugin = require('html-webpack-plugin');
 
     module.exports = {
+      mode: 'development',
       output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
@@ -94,7 +95,8 @@ function writeWebpackConfig {
         })
       ],
       devServer: {
-        port: 9000
+        port: 9000,
+        hot: true
       }
     }" >> webpack.config.js
 }
