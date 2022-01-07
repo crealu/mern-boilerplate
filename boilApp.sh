@@ -103,7 +103,8 @@ function writeWebpackConfig {
 }
 
 function writeKeyConfig {
-  echo "module.exports = {
+  echo "
+  module.exports = {
     MongoURI: 'mongodb+srv://user:password@cluster0.0wmx5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
   }" >> keyconfig.js
 }
@@ -114,7 +115,7 @@ function writeSrcFiles {
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Bare Bones App</title>
+    <title>MERN App</title>
   </head>
   <body>
     <div id="root"></div>
@@ -131,9 +132,7 @@ function writeSrcFiles {
   echo "
   const App = () => {
     return (
-      <h1 style={{backgroundColor: 'red'}}
-          onClick={() => {console.log('hi')}}
-      >Just Bones</h1>
+      <h1>Awesome frontend here! If you see this, you're doing great.</h1>
     )
   }
 
@@ -144,7 +143,7 @@ function updatePackageJSON {
   sed -i.bak '7i\
   \    "start": "node server",\
   \    "build": "webpack --mode=production",\
-  \    "devf": "webpack serve -mode=development --open --hot",\
+  \    "devf": "webpack serve --open --hot",\
   \    "devb": "nodemon server",\
   ' package.json
 }
