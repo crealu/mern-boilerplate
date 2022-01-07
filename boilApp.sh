@@ -11,7 +11,7 @@ function writeServerJS {
   consts=( express bodyParser path MongoClient uri
     port app client)
   requires=( express body-parser path mongodb keyconfig
-    "process.env.PORT || 9000" "express()" "new MongoClient(uri)")
+    "process.env.PORT || 9900" "express()" "new MongoClient(uri)")
   n=0
   for c in "${consts[@]}"; do
     mainstr="const "$c" = require('"${requires[n]}"')"
@@ -31,11 +31,18 @@ function writeServerJS {
     n=$((n + 1))
   done
 
-  echo "\nasync function connectToDB() {\n\tawait client.connect( err => {
-    err ? console.log(err) : console.log('Connected to database');
-  });\n}" >> server.js
-  echo "connectToDB();" >> server.js
-  echo "\nconst pathToBuild = path.join(__dirname, 'build');\n" >> server.js
+  echo "
+  /*
+  async function connectToDB() {
+    await client.connect( err => {
+      err ? console.log(err) : console.log('Connected to database');
+    });
+  }
+  connectToDB();
+  */
+
+  const pathToBuild = path.join(__dirname, 'build');
+  " >> server.js
 
   appMethods=(
     "app.use(bodyParser.urlencoded({ extended: true }));"
@@ -96,7 +103,7 @@ function writeWebpackConfig {
       })
     ],
     devServer: {
-      port: 9000,
+      port: 9900,
       hot: true
     }
   }" >> webpack.config.js
