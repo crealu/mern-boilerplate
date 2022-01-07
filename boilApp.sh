@@ -4,7 +4,7 @@
 
 function writeBabelRC {
   str='{\n\t"presets": [\n\t\t"@babel/preset-env", \n\t\t"@babel/preset-react"\n\t]\n}'
-  echo $str >> .babel.rc
+  echo $str >> .babelrc
 }
 
 function writeServerJS {
@@ -142,7 +142,7 @@ function updatePackageJSON {
   \    "build": "webpack --mode=production",\
   \    "devf": "webpack serve -mode=development --open --hot",\
   \    "devb": "nodemon server",\
-  ' test.txt
+  ' package.json
 }
 
 function writeFiles {
