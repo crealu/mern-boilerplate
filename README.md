@@ -20,3 +20,13 @@ Next, press CTRL+C in the terminal window to terminate the server. Run the follo
 ### `npm run build`
 
 Once the build succeeds, you are ready to serve the frontend using Node and Express. Before starting this step, you will have to create an account (free) on MongoDB. Go to https://www.mongodb.com/cloud to do so.
+
+After creating an account and cluster, create a database and user. Obtain the connection key (MongoURI) from the MongoDB Cloud dashboard. Set this as the value for MongoURI in the keyconfig.js file.
+
+# Use as a terminal command
+
+Save boilApp.sh as .boilApp.sh and add a reference to it in the zshrc file (found in admin folder /etc). At the bottom of the file add the following line:
+### `source ~/.boilApp.sh`
+
+To use this boilerplate in any directory from the terminal, type:
+### `boilApp`
