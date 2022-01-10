@@ -19,9 +19,16 @@ This will start a frontend development server. Navigate to localhost:9000 in you
 Next, press CTRL+C in the terminal window to terminate the server. Run the following command to bundle your frontend:
 ### `npm run build`
 
-Once the build succeeds, you are ready to serve the frontend using Node and Express. Before starting this step, you will have to create an account (free) on MongoDB. Go to https://www.mongodb.com/cloud to do so.
+Once the build succeeds, you are ready to serve the frontend using Node and Express. If you would like to connect to a backend database, you will have to create an account (free) on MongoDB. Go to https://www.mongodb.com/cloud to do so. This step can be completed at the end, as well.
 
-After creating an account and cluster, create a database and user. Obtain the connection key (MongoURI) from the MongoDB Cloud dashboard. Set this as the value for MongoURI in the keyconfig.js file.
+After creating an account and cluster, create a database and user. Obtain the connection key (MongoURI) from the MongoDB Cloud dashboard. Set this as the value for MongoURI in the keyconfig.js file. Finally, uncomment the require statements in the server.js file.
+
+Once the database configuration is complete, start the server by typing this command into the terminal:
+### `npm run devb`
+
+You will see a message, "Database connected. Listening on 9000"
+
+
 
 # Use as a terminal command
 
