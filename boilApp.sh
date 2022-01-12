@@ -15,7 +15,7 @@ function writeServerJS {
   const MongoClient = require('mongodb').MongoClient;
   // const uri = require('keyconfig').MongoURI;
 
-  const port = process.env.PORT || 9900;
+  const port = process.env.PORT || 9100;
   const app = express();
   // const client = new MongoClient(uri, { useNewUrlParser: true })
   " >> server.js
@@ -92,7 +92,7 @@ function writeWebpackConfig {
       })
     ],
     devServer: {
-      port: 9900,
+      port: 9000,
       hot: true
     }
   }" >> webpack.config.js
@@ -140,7 +140,7 @@ function updatePackageJSON {
   \    "start": "node server",\
   \    "build": "webpack --mode=production",\
   \    "devf": "webpack serve --open --hot",\
-  \    "devb": "nodemon server",\
+  \    "devb": "webpack --mode=production && nodemon server",\
   ' package.json
 }
 
@@ -171,7 +171,7 @@ function boilApp {
   done
 
   for dd in "${devDependencies[@]}"; do
-    npm install "$dd" --save-dev
+    npm install $dd --save-dev
   done
 
   echo "Finished installing dependencies"
@@ -182,15 +182,15 @@ function boilApp {
   srcFiles=( app.js index.js style.css index.html )
 
   for di in "${directoreis[@]}"; do
-    mkdir di
+    mkdir $di
   done
 
   for gf in "${globalFiles[@]}"; do
-    touch gf
+    touch $gf
   done
 
   for sf in "${srcFiles[@]}"; do
-    touch src/sf
+    touch src/$sf
   done
 
   echo "Finished generating configuration and source files"
