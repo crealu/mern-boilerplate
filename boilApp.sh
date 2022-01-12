@@ -8,28 +8,15 @@ function writeBabelRC {
 }
 
 function writeServerJS {
-  consts=( express bodyParser path MongoClient uri
-    port app client)
-  requires=( express body-parser path mongodb keyconfig
-    "process.env.PORT || 9900" "express()" "new MongoClient(uri)")
-  n=0
-  for c in "${consts[@]}"; do
-    mainstr="const "$c" = require('"${requires[n]}"')"
-    mainstr2="const "$c" = "${requires[n]}
-    if [ "$n" -eq 3 ]; then
-      mainstr="${mainstr}.MongoClient"
-    elif [ "$n" -eq 4 ]; then
-      mainstr="${mainstr}.MongoURI"
-    fi
-
-    if [ "$n" -gt 4 ]; then
-      echo "${mainstr2};" >> server.js
-    else
-      echo "${mainstr};" >> server.js
-    fi
-
-    n=$((n + 1))
-  done
+  echo "
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const path = require('path');
+  const MongoClient = require('mongodb').MongoClient;
+  // const uri = require('keyconfig').MongoURI;
+  const port = process.env.PORT || 9900;
+  const app = express();
+  " >> server.js
 
   echo "
   /*
