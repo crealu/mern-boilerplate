@@ -2,6 +2,9 @@
 
 This project is a boilerplate for setting up a MERN full stack app. The app's folders and files are created using a single bash script.
 
+<pre>
+
+</pre>
 ## Usage
 
 To use this project:
@@ -21,6 +24,9 @@ Next, press CTRL+C in the terminal window to terminate the dev environment. Run 
 
 Once the build succeeds, your frontend is ready to be served. Visit localhost:9100 in your browser window.
 
+<pre>
+
+</pre>
 ## Connecting to a database
 
 If you would like to connect to a backend database, you will have to create an account (free) on MongoDB. Go to https://www.mongodb.com/cloud to do so. This step can be completed at the end, as well.
@@ -31,9 +37,10 @@ Once the database configuration is complete, start the server by typing this com
 
 You will see a message, "Database connected. Listening on 9000"
 
+<pre>
 
-
-# Use as a terminal command
+</pre>
+## Use as a terminal command
 
 Save boilApp.sh as .boilApp.sh and add a reference to it in the zshrc file (found in admin folder /etc). At the bottom of the file add the following line:
 ### `source ~/.boilApp.sh`
