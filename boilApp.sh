@@ -14,8 +14,10 @@ function writeServerJS {
   const path = require('path');
   const MongoClient = require('mongodb').MongoClient;
   // const uri = require('keyconfig').MongoURI;
+
   const port = process.env.PORT || 9900;
   const app = express();
+  // const client = new MongoClient(uri, { useNewUrlParser: true })
   " >> server.js
 
   echo "
@@ -174,12 +176,14 @@ function fullskel {
     echo "Finished creating configuration files"
     echo "Creating frontend source files..."
 
+    mkdir public
+    mkdir build
     mkdir src
     touch src/app.js
     touch src/index.js
     touch src/style.css
     touch src/index.html
-    mkdir build
+
 
     echo "Finished creating frontend source files"
     echo "Writing files..."
