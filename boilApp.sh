@@ -167,11 +167,11 @@ function boilApp {
   npm init -y
 
   for d in "${dependencies[@]}"; do
-    echo "npm install "$d" --save"
+    npm install $d --save
   done
 
   for dd in "${devDependencies[@]}"; do
-    echo "npm install "$dd" --save-dev"
+    npm install "$dd" --save-dev
   done
 
   echo "Finished installing dependencies"
