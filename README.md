@@ -2,7 +2,7 @@
 
 This project is a boilerplate for setting up a MERN full stack app. The app's folders and files are created using a single bash script.
 
-<br/>
+<p&nbsp;</p>
 ## Usage
 
 To use this project:
