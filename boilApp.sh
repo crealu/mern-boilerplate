@@ -154,44 +154,52 @@ function writeFiles {
   echo "Finished writing files"
 }
 
-function fullskel {
-    echo "Setting up full stack (MERN) app with NPM..."
+function boilApp {
+  echo "Setting up full stack (MERN) app with NPM..."
 
-    npm init -y
-    npm install express mongodb body-parser --save
-    npm install nodemon --save-dev
-    npm install react react-dom --save
-    npm install @babel/core @babel/preset-env @babel/preset-react babel-loader css-loader style-loader --save-dev
-    npm install webpack webpack-cli webpack-dev-server html-webpack-plugin --save-dev
+  dependencies=( react react-dom express mongodb body-parser )
+  devDependencies=(
+    @babel/core @babel/preset-env @babel/preset-react
+    babel-loader css-loader style-loader
+    webpack webpack-cli webpack-dev-server html-webpack-plugin
+  )
 
-    echo "Finished installing dependencies"
-    echo "Creating configuration files..."
+  npm init -y
 
-    touch server.js
-    touch webpack.config.js
-    touch keyconfig.js
-    touch .babelrc
-    touch .gitignore
+  for d in "${dependencies[@]}"; do
+    echo "npm install "$d" --save"
+  done
 
-    echo "Finished creating configuration files"
-    echo "Creating frontend source files..."
+  for dd in "${devDependencies[@]}"; do
+    echo "npm install "$dd" --save-dev"
+  done
 
-    mkdir public
-    mkdir build
-    mkdir src
-    touch src/app.js
-    touch src/index.js
-    touch src/style.css
-    touch src/index.html
+  echo "Finished installing dependencies"
+  echo "Generating configuration and source files..."
 
+  directories=( build public src )
+  globalFiles=( server.js webpack.config.js keyconfig.js .babelrc .gitignore )
+  srcFiles=( app.js index.js style.css index.html )
 
-    echo "Finished creating frontend source files"
-    echo "Writing files..."
+  for di in "${directoreis[@]}"; do
+    mkdir di
+  done
 
-    writeFiles
+  for gf in "${globalFiles[@]}"; do
+    touch gf
+  done
 
-    echo "Finished writing files"
-    echo "Application setup completed"
+  for sf in "${srcFiles[@]}"; do
+    touch src/sf
+  done
+
+  echo "Finished generating configuration and source files"
+  echo "Writing files..."
+
+  writeFiles
+
+  echo "Finished writing files"
+  echo "Application setup completed"
 }
 
-fullskel
+boilApp
