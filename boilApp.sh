@@ -22,18 +22,17 @@ function writeServerJS {
   )
 
   dbConnection=(
-    "async function connectToDB() {"
-    "\tawait client.connect( err => {"
-    "\t\terr ? console.log(err) : console.log('Connected to database');"
-    "\t});"
-    "}"
-    "connectToDB();"
-    ""
-    "const pathToBuild = path.join(__dirname, 'build');"
+    "\\ async function connectToDB() {"
+    "\\ \tawait client.connect( err => {"
+    "\\ \t\terr ? console.log(err) : console.log('Connected to database');"
+    "\\ \t});"
+    "\\ }"
+    "\\ connectToDB();"
     ""
   )
 
   appMethods=(
+    "const pathToBuild = path.join(__dirname, 'build');"
     "app.use(bodyParser.urlencoded({ extended: true }));"
     "app.use(express.static(pathToBuild));"
     "app.get('/', (req, res) => {"
@@ -117,33 +116,48 @@ function writeKeyConfig {
 }
 
 function writeSrcFiles {
-  echo '
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>MERN App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-  </html>' >> src/index.html
-
-  echo "
-  import React from 'react';
-  import { render } from 'react-dom';
-  import App from './app';
-
-  render(<App />, document.getElementById('root'));" >> src/index.js
-
-  echo "
-const App = () => {
-  return (
-    <h1>Awesome frontend here! If you see this, you're doing great.</h1>
+  indexHTML=(
+    '<!DOCTYPE html>'
+    '<html lang="en">'
+    '<head>'
+    '\t<meta charset="UTF-8">'
+    '\t<title>MERN App</title>'
+    '</head>'
+    '<body>'
+    '\t<div id="root"></div>'
+    '</body>'
+    '</html>'
   )
-}
 
-export default App;" >> src/app.js
+  indexJS=(
+    "import React from 'react';"
+    "import { render } from 'react-dom';"
+    "import App from './app';"
+    ""
+    "render(<App />, document.getElementById('root'));"
+  )
+
+  appJS=(
+    "const App = () => {"
+    "\treturn ("
+    "\t\t<h1>Awesome frontend here! If you see this, you're doing great.</h1>"
+    "\t)"
+    "}"
+    ""
+    "export default App;"
+  )
+
+  for ih in "${indexHTML[@]}"; do
+    echo $ih >> src/index.html
+  done
+
+  for ijs in "${indexJS[@]}"; do
+    echo $ijs >> src/index.js
+  done
+
+  for ajs in "${appJS[@]}"; do
+    echo $ajs >> src/app.js
+  done
 }
 
 function updatePackageJSON {
@@ -156,12 +170,12 @@ function updatePackageJSON {
 }
 
 function writeFiles {
-  # writeBabelRC
+  writeBabelRC
   writeServerJS
-  # writeWebpackConfig
-  # writeKeyConfig
-  # writeSrcFiles
-  # updatePackageJSON
+  writeWebpackConfig
+  writeKeyConfig
+  writeSrcFiles
+  updatePackageJSON
   echo "Finished writing files"
 }
 
@@ -213,6 +227,4 @@ function boilApp {
   echo "Application setup completed"
 }
 
-# boilApp
-
-writeFiles
+boilApp

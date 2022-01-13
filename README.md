@@ -17,15 +17,16 @@ Once the installation and setup are complete, in the same terminal window, run t
 
 This will start a frontend development environment with a page rendered by React. Navigate to localhost:9000 in your browser to see the rendered page.
 
-Next, press CTRL+C in the terminal window to terminate the dev environment. Run the following command to bundle your frontend and serve it from the backend using Node:
+Next, press CTRL+C in the terminal window to terminate the dev environment. Run the following command to bundle your React app frontend and serve it from the backend using Node:
 ### `npm run devb`
 
 Once the build succeeds, your frontend is ready to be served. Visit localhost:9100 in your browser window.
 
 &nbsp;
-## Connecting to a database
+## Connect to a database
 
 If you would like to connect to a backend database, you will have to create an account (free) on MongoDB. Go to https://www.mongodb.com/cloud to do so. This step can be completed at the end, as well.
+
 After creating an account and cluster, create a database and user. Obtain the connection key (MongoURI) from the MongoDB Cloud dashboard. Set this as the value for MongoURI in the keyconfig.js file. Finally, uncomment the require statements in the server.js file.
 
 Once the database configuration is complete, start the server by typing this command into the terminal:
