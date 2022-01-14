@@ -3,12 +3,17 @@
 This project is a boilerplate for setting up a MERN full stack app. The app's folders and files are created using a single bash script.
 
 &nbsp;
+## Requirements
+Node v16.13.1 or later version. Node can be obtained from https://nodejs.org/en/
+
+&nbsp;
 ## Usage
 
 To use this project:
 1. Clone this repository
 2. Open the terminal and navigate to this directory
 3. Run `sh boilApp.sh`
+
 
 This will create the file structure of your full stack application, install dependencies for development and production, and fill files with a minimal amount of starter code.
 
@@ -37,8 +42,8 @@ You will see a message, "Database connected. Listening on 9000"
 &nbsp;
 ## Use as a terminal command
 
-Save boilApp.sh as .boilApp.sh and add a reference to it in the zshrc file (found in admin folder /etc). At the bottom of the file add the following line:
-### `source ~/.boilApp.sh`
+Run the following command in the terminal to created a custom terminal command:
+### `sh saveCmd.sh`
 
-To use this boilerplate in any directory from the terminal, type:
+Now you can use this boilerplate in any directory in the terminal by simply typing:
 ### `boilApp`
