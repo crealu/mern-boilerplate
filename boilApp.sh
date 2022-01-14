@@ -227,4 +227,4 @@ function boilApp {
   echo "Application setup completed"
 }
 
-boilApp
+boilApp # main
