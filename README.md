@@ -4,7 +4,7 @@ This project is a boilerplate for setting up a MERN full stack app. The app's fo
 
 &nbsp;
 ## Requirements
-Node v16.13.1 or later version. Node can be obtained from https://nodejs.org/en/
+Node v16.13.1 or later. Node can be obtained from https://nodejs.org/en/
 
 &nbsp;
 ## Usage
