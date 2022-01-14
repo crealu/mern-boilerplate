@@ -22,12 +22,12 @@ function writeServerJS {
   )
 
   dbConnection=(
-    "\\ async function connectToDB() {"
-    "\\ \tawait client.connect( err => {"
-    "\\ \t\terr ? console.log(err) : console.log('Connected to database');"
-    "\\ \t});"
-    "\\ }"
-    "\\ connectToDB();"
+    "// async function connectToDB() {"
+    "// \tawait client.connect( err => {"
+    "// \t\terr ? console.log(err) : console.log('Connected to database');"
+    "// \t});"
+    "// }"
+    "// connectToDB();"
     ""
   )
 
