@@ -15,17 +15,17 @@ To use this project:
 3. Run `sh boilApp.sh`
 
 
-This will create the file structure of your full stack application, install dependencies for development and production, and fill files with a minimal amount of starter code.
+This will create the file structure of your full stack application, install dependencies for development and production, and fill files with the minimal amount of starter code.
 
 Once the installation and setup are complete, in the same terminal window, run the following command:
 ### `npm run devf`
 
-This will start a frontend development environment with a page rendered by React. Navigate to localhost:9000 in your browser to see the rendered page.
+This will open a page that displays the frontend rendered by React. Navigate to localhost:9000 in your browser to see the rendered page.
 
-Next, press CTRL+C in the terminal window to terminate the dev environment. Run the following command to bundle your React app frontend and serve it from the backend using Node:
+Next, press CTRL+C in the terminal window to terminate the frontend dev environment. Bundle your React app frontend and serve it with Node from the backend using the following command:
 ### `npm run devb`
 
-Once the build succeeds, your frontend is ready to be served. Visit localhost:9100 in your browser window.
+Once the build succeeds, your frontend is ready to be served. Visit localhost:9100 in your browser window to view the full stack application.
 
 &nbsp;
 ## Connect to a database
@@ -42,7 +42,7 @@ You will see a message, "Database connected. Listening on 9000"
 &nbsp;
 ## Use as a terminal command
 
-Run the following command in the terminal to created a custom terminal command:
+Run the following command in the terminal to create a custom terminal command:
 ### `sh saveCmd.sh`
 
 Now you can use this boilerplate in any directory in the terminal by simply typing:
