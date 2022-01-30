@@ -169,7 +169,7 @@ function updatePackageJSON {
   ' package.json
 }
 
-function writeFiles {
+function writeFiles () {
   writeBabelRC
   writeServerJS
   writeWebpackConfig
@@ -177,6 +177,14 @@ function writeFiles {
   writeSrcFiles
   updatePackageJSON
   echo "Finished writing files"
+
+  if [ $1 = bfs ]
+  then
+    mkdir config
+    mkdir models
+    mkdir routes
+    mkdir views
+  fi
 }
 
 function boilApp {
@@ -227,4 +235,4 @@ function boilApp {
   echo "Application setup completed"
 }
 
-boilApp # main
+boilApp $1 # main

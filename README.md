@@ -14,7 +14,6 @@ To use this project:
 2. Open the terminal and navigate to this directory
 3. Run `sh boilApp.sh`
 
-
 This will create the file structure of your full stack application, install dependencies for development and production, and fill files with the minimal amount of starter code.
 
 Once the installation and setup are complete, in the same terminal window, run the following command:
