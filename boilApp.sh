@@ -169,21 +169,25 @@ function updatePackageJSON {
   ' package.json
 }
 
-function writeFiles () {
-  writeBabelRC
-  writeServerJS
-  writeWebpackConfig
-  writeKeyConfig
-  writeSrcFiles
-  updatePackageJSON
+function writeFiles {
+  # writeBabelRC
+  # writeServerJS
+  # writeWebpackConfig
+  # writeKeyConfig
+  # writeSrcFiles
+  # updatePackageJSON
   echo "Finished writing files"
 
-  if [ $1 = bfs ]
-  then
-    mkdir config
-    mkdir models
-    mkdir routes
-    mkdir views
+  if [ $# -eq 0 ]
+    then
+      echo "Initialized with basic file structure"
+  elif [ $1 = bfs ]
+    then
+      echo "Initialized with backend file structure"
+      mkdir config
+      mkdir models
+      mkdir routes
+      mkdir views
   fi
 }
 
@@ -235,4 +239,5 @@ function boilApp {
   echo "Application setup completed"
 }
 
-boilApp $1 # main
+writeFiles $1
+# boilApp $1 # main
