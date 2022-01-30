@@ -170,12 +170,12 @@ function updatePackageJSON {
 }
 
 function writeFiles {
-  # writeBabelRC
-  # writeServerJS
-  # writeWebpackConfig
-  # writeKeyConfig
-  # writeSrcFiles
-  # updatePackageJSON
+  writeBabelRC
+  writeServerJS
+  writeWebpackConfig
+  writeKeyConfig
+  writeSrcFiles
+  updatePackageJSON
   echo "Finished writing files"
 
   if [ $# -eq 0 ]
@@ -239,5 +239,5 @@ function boilApp {
   echo "Application setup completed"
 }
 
-writeFiles $1
-# boilApp $1 # main
+# writeFiles $1
+boilApp $1 # main
