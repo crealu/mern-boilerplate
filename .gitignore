@@ -1,3 +1,3 @@
 /app/test.sh
-/app/node_modules
-/app/.gitignore
+/app/test2.sh
+/app/*

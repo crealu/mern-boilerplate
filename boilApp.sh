@@ -167,6 +167,8 @@ function updatePackageJSON {
   \    "devf": "webpack serve --open --hot",\
   \    "devb": "webpack --mode=production && nodemon server",\
   ' package.json
+
+  rm package.json.bak
 }
 
 function writeFiles {
@@ -246,10 +248,10 @@ function boilApp {
   echo "Finished generating configuration and source files"
   echo "Writing files..."
 
-  #writeFiles
+  writeFiles
 
   echo "Finished writing files"
-  echo "Application setup completed"
+  echo "Application setup complete"
 }
 
 # writeFiles $1
