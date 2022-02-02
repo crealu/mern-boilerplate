@@ -177,8 +177,6 @@ function writeFiles {
   writeSrcFiles
   updatePackageJSON
   echo "Finished writing files"
-
-
 }
 
 function boilApp {
@@ -223,7 +221,7 @@ function boilApp {
   if [ $# -eq 0 ]
     then
       echo "Initialized with basic file structure"
-  elif [ $1 = bfs ]
+  elif [ $1 = "--bfs" ]
     then
       echo "Initialized with backend file structure"
       mkdir config
@@ -248,7 +246,7 @@ function boilApp {
   echo "Finished generating configuration and source files"
   echo "Writing files..."
 
-  writeFiles
+  #writeFiles
 
   echo "Finished writing files"
   echo "Application setup completed"

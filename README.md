@@ -13,7 +13,7 @@ To use this project:
 1. Clone this repository
 2. Open the terminal and navigate to this directory
 3. Run `sh boilApp.sh`
-4. (Optional) Run `sh boilApp.sh bfs` to initialize directory with backend folders (config, models, routes, views)
+4. (Optional) Run `sh boilApp.sh --bfs` to initialize directory with backend folders (config, models, routes, views)
 
 This will create the file structure of your full stack application, install dependencies for development and production, and fill files with the minimal amount of starter code.
 
