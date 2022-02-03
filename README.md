@@ -12,10 +12,13 @@ Node v16.13.1 or later. Node can be obtained from https://nodejs.org/en/
 To use this project:
 1. Clone this repository
 2. Open the terminal and navigate to this directory
-3. Run `sh boilApp.sh`
-4. (Optional) Run `sh boilApp.sh --bfs` to initialize directory with backend folders (config, models, routes, views)
+3. Run `sh boilAppSkel.sh` or `sh boilApp.sh`
 
-This will create the file structure of your full stack application, install dependencies for development and production, and fill files with the minimal amount of starter code.
+Running boilAppSkel.sh will create a basic file structure for your full stack application, install the minimum dependencies required for development and production, and fill files with a minimal amount of starter code. The boilAppSkel.sh option is recommended if you would like
+to get started with just the fundamental components of a stack using React, Express, Node, and MongoDB.
+
+Alternatively, running boilApp.sh will give you everything included in boilAppSkel.sh and more. This option is best for developers looking to springboard their development and
+focus on fine tuning application specs that are already coded.
 
 Once the installation and setup are complete, in the same terminal window, run the following command:
 ### `npm run devf`

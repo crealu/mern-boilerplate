@@ -254,5 +254,4 @@ function boilApp {
   echo "Application setup complete"
 }
 
-# writeFiles $1
 boilApp $1 # main
