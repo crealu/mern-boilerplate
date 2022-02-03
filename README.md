@@ -46,7 +46,7 @@ You will see a message, "Database connected. Listening on 9000"
 ## Use as a terminal command
 
 Run the following command in the terminal to create a custom terminal command:
-### `sh saveCmd.sh`
+### `sh saveAsCmd.sh`
 
 Now you can use this boilerplate in any directory in the terminal by simply typing:
 ### `boilApp`

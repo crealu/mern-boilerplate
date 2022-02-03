@@ -4,22 +4,22 @@
 
 function saveCmd {
   # copy boilApp.sh into .boilApp.sh
-  cp boilApp.sh .boilApp.sh
+  cp boilAppSkel.sh .boilAppSkel.sh
 
   # comment out boilApp function call
-  sed -i.bak '/boilApp # main/d' .boilApp.sh
+  sed -i.bak '/boilApp # main/d' .boilAppSkel.sh
 
   # delete backup file
-  rm .boilApp.sh.bak
+  rm .boilAppSkel.sh.bak
 
   # move .boilApp.sh to home directory
-  mv .boilApp.sh ~/
+  mv .boilAppSkel.sh ~/
 
   # change to /etc
   cd ~ && cd .. && cd ../etc
 
   # add source ~/.boilApp.sh to zshrc file
-  echo '\nsource ~/.boilApp.sh' >> zshrc
+  echo '\nsource ~/.boilAppSkel.sh' >> zshrc
 
   # notify user
   echo "\nTerminal command created\nType 'boilApp' to use"
