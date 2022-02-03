@@ -2,19 +2,17 @@
 
 # Produces a full stack application comprised of React, Express, Node, MongoDB
 
-source ./dependencies.sh
-source ./structure.sh
-source ./files.sh
+source ./src/dependencies.sh
+source ./src/structure.sh
+source ./src/files.sh
 
 function initApplication {
   echo "Setting up full stack (MERN) app with npm..."
 
   npm init -y
   installDependencies
-  createStructure $1
+  createStructure
   writeFiles
 
   echo "Application setup complete"
 }
-
-initApplication $1

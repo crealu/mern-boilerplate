@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Installs dependencies
+
 function installDependencies {
   dependencies=(
     react                     bcrypt
