@@ -5,20 +5,19 @@ function installDependencies {
   dependencies=(
     react                     bcrypt
     react-dom                 express
-    express                   express-session
-    mongodb                   cookie-parser
+    cookie-parser             express-session
     body-parser               passport
     ejs                       passport-local
-    nodemailer
+    nodemailer                mongoose
   )
-  
+
   devDependencies=(
-    @babel/core               style-loader
+    @babel/core               nodemon
     @babel/preset-env         webpack
     @babel/preset-react       webpack-cli
     babel-loader              webpack-dev-server
     css-loader                html-webpack-plugin
-    nodemon
+    style-loader
   )
 
   for d in "${dependencies[@]}"; do

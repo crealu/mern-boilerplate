@@ -8,7 +8,6 @@ function createStructure {
     touch $gf
   done
 
-
   if [ $# -eq 0 ]
     then
       echo "Initialized with basic file structure"
@@ -45,7 +44,6 @@ function createStructure {
       touch routes/index.js
       touch routes/email.js
   fi
-
 
   echo "Finished generating configuration and source files"
 }
