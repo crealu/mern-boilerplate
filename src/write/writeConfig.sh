@@ -66,7 +66,25 @@ module.exports = {
 }" >> webpack.config.js
 }
 
+function writeAuthJS {
+  lines=(
+    "module.exports = {"
+    "\tensureAuthenticated: function(req, res, next) {"
+    "\t\tif (req.isAuthenticated()) {"
+    "\t\t\treturn next();"
+    "\t\t}"
+    "\t}"
+    "}"
+  )
+
+  for l in "${lines[@]}"; do
+    echo $l >> auth.js
+  done
+}
+
 function writeConfigFiles {
   writeBabelRC
   writeKeyConfig
+  writeWebpackConfig
+  writeAuthJS
 }
