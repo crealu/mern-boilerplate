@@ -2,14 +2,21 @@
 
 # Installs dependencies
 
+function loopAndInstall {
+  dependencyList=("$@")
+  for d in "${dependencyList[@]}"; do
+    npm install $d --save$1
+  done
+}
+
 function installDependencies {
   dependencies=(
     react                     bcrypt
     react-dom                 express
     cookie-parser             express-session
-    body-parser               passport
-    ejs                       passport-local
-    nodemailer                mongoose
+    passport                  passport-local
+    ejs                       mongoose
+    nodemailer
   )
 
   devDependencies=(
@@ -21,13 +28,8 @@ function installDependencies {
     style-loader
   )
 
-  for d in "${dependencies[@]}"; do
-    npm install $d --save
-  done
-
-  for dd in "${devDependencies[@]}"; do
-    npm install $dd --save-dev
-  done
+  loopAndInstall ""  "${dependencies[@]}"
+  loopAndInstall "-dev" "${devDependencies[@]}"
 
   echo "Finished installing dependencies"
 }

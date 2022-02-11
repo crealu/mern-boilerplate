@@ -2,7 +2,7 @@
 
 # Creates the application structure of folders and files
 
-function createStructure {
+function createFileStructure {
   echo "Initialized with backend file structure"
   directories=( build public src config models views routes)
   srcFiles=( app.js index.js style.css index.html )

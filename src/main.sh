@@ -11,7 +11,7 @@ function initApplication {
 
   npm init -y
   installDependencies
-  createStructure
+  createFileStructure
   writeFiles
 
   echo "Application setup complete"
