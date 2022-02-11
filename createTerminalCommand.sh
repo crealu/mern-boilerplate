@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function saveCmd {
+function createTerminalCommand {
   cp boilApp.sh .boilApp.sh
   sed -i.bak '/boilApp # main/d' .boilApp.sh
   rm .boilApp.sh.bak
@@ -12,4 +12,4 @@ function saveCmd {
   echo "\nTerminal command created\nType 'boilApp' to use"
 }
 
-saveCmd
+createTerminalCommand

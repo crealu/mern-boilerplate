@@ -181,7 +181,7 @@ function writeFiles {
   echo "Finished writing files"
 }
 
-function boilApp {
+function generateApp {
   echo "Setting up full stack (MERN) app with npm..."
 
   dependencies=( react react-dom express mongodb body-parser )
@@ -254,4 +254,4 @@ function boilApp {
   echo "Application setup complete"
 }
 
-boilApp $1 # main
+generateApp $1 # main
