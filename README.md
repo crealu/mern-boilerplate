@@ -14,8 +14,7 @@ To use this project:
 2. Open the terminal and navigate to this directory
 3. Run `sh boilAppSkel.sh` or `sh boilApp.sh`
 
-Running boilAppSkel.sh will create a basic file structure for your full stack application, install the minimum dependencies required for development and production, and fill files with a minimal amount of starter code. The boilAppSkel.sh option is recommended if you would like
-to get started with just the fundamental components of a stack using React, Express, Node, and MongoDB.
+Running boilAppSkel.sh will create a basic file structure for your full stack application, install the minimum dependencies required for development and production, and fill files with a minimal amount of starter code. The boilAppSkel.sh option is recommended if you would like to get started with just the fundamental components of a stack using React, Express, Node, and MongoDB.
 
 Alternatively, running boilApp.sh will give you everything included in boilAppSkel.sh and more. This option is best for developers looking to springboard their development and
 focus on fine tuning application specs that are already coded.
