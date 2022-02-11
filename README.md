@@ -17,7 +17,10 @@ To use this project:
 This will install all the dependencies listed in the package.json file. Once the installations are complete, in the same terminal window, run the following command:
 ### `npm run devf`
 
-Navigate to localhost:9000 in your browser to see the frontend rendered by React and served with on a Webpack dev server.
+Navigate to localhost:9000 in your browser to see the frontend rendered by React.
+The interface is being served from a Webpack dev server and updates when
+changes are made to the files in `app/src`. As an experiment, change the color
+in style.css to `lightblue`. 
 
 Next, press ctrl+C in the terminal window to terminate the open frontend environment. Bundle your React app frontend and serve it with Node from the backend using the following command:
 ### `npm run devb`
