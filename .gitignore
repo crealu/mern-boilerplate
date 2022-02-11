@@ -1,3 +1,5 @@
 /app/node_modules
 /app/test.sh
 /app/test2.sh
+/src
+/boilAppSke.sh
