@@ -1,15 +1,15 @@
 #!/bin/bash
 
 function createTerminalCommand {
-  cp boilApp.sh .boilApp.sh
-  sed -i.bak '/boilApp # main/d' .boilApp.sh
-  rm .boilApp.sh.bak
-  mv .boilApp.sh ~/
+  cp generateApp.sh .generateApp.sh
+  sed -i.bak '/generateApp # main/d' .generateApp.sh
+  rm .generateApp.sh.bak
+  mv .generateApp.sh ~/
 
   cd ~ && cd .. && cd ../etc
 
-  echo '\nsource ~/.boilAppSkel.sh' >> zshrc
-  echo "\nTerminal command created\nType 'boilApp' to use"
+  echo '\nsource ~/.generateApp.sh' >> zshrc
+  echo "\nTerminal command created\nType 'generateApp' to use"
 }
 
 createTerminalCommand

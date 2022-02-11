@@ -14,16 +14,10 @@ To use this project:
 2. Open the terminal and navigate to `app` in this directory
 3. Run `npm install`
 
-This will install all the dependencies listed in the package.json file.
-Running boilAppSkel.sh will create a basic file structure for your full stack application, install the minimum dependencies required for development and production, and fill files with a minimal amount of starter code. The boilAppSkel.sh option is recommended if you would like to get started with just the fundamental components of a stack using React, Express, Node, and MongoDB.
-
-Alternatively, running boilApp.sh will give you everything included in boilAppSkel.sh and more. This option is best for developers looking to springboard their development and
-focus on fine tuning application specs that are already coded.
-
-Once the installations are complete, in the same terminal window, run the following command:
+This will install all the dependencies listed in the package.json file. Once the installations are complete, in the same terminal window, run the following command:
 ### `npm run devf`
 
-This will open a page that displays the frontend rendered by React. Navigate to localhost:9000 in your browser to see the rendered page.
+Navigate to localhost:9000 in your browser to see the frontend rendered by React and served with on a Webpack dev server.
 
 Next, press ctrl+C in the terminal window to terminate the open frontend environment. Bundle your React app frontend and serve it with Node from the backend using the following command:
 ### `npm run devb`
@@ -46,11 +40,11 @@ You will see a message, "Database connected. Listening on 9100"
 ## Use as a terminal command
 
 The saveAsCmd.sh script creates a custom terminal command that can be run in any directory from the terminal.
-This created command can be used to then create a fullstack application with filled in files and installed dependencies whenever you like.
+This created command can be used to then create a full stack application with filled in files and installed dependencies whenever you like.
 Run the following command in the terminal to create this command:
-### `sh saveAsCmd.sh`
+### `sh createTerminalCommand.sh`
 
 To use in any directory, run:
-### `boilApp`
+### `generateApp`
 
-If you receive the error `command not found: boilApp`, you will need to change zshrc to bashrc in the saveAsCmd.sh file.
+If you receive the error `command not found: generateApp`, you will need to change zshrc to bashrc in the createTerminalCommand.sh file.
