@@ -1,6 +1,11 @@
+import RegistrationForm from './components/RegistrationForm';
+
 const App = () => {
 	return (
-		<h1>Awesome frontend here! If you see this, you're doing great.</h1>
+		<div>
+			<h1>Awesome frontend here! If you see this, you're doing great.</h1>
+			<RegistrationForm />
+		</div>
 	)
 }
 

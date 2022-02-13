@@ -1,3 +1,10 @@
 h1 {
   color: lightgreen;
 }
+
+.form-field {
+  display: grid;
+  grid-template-columns: repeat(2, 130px);
+  height: 30px;
+  margin: 0px 0px 10px 0px;
+}
