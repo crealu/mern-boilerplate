@@ -2,6 +2,13 @@ h1 {
   color: lightgreen;
 }
 
+.registration-form {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 260px;
+}
+
 .form-field {
   display: grid;
   grid-template-columns: repeat(2, 130px);
