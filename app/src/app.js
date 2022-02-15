@@ -1,9 +1,17 @@
 import RegistrationForm from './components/RegistrationForm';
 
+const PageTitle = () => {
+	return (
+		<h1 className="page-title">
+			Awesome frontend here! If you see this, you're doing great.
+		</h1>
+	)
+}
+
 const App = () => {
 	return (
 		<div>
-			<h1>Awesome frontend here! If you see this, you're doing great.</h1>
+			<PageTitle />
 			<RegistrationForm />
 		</div>
 	)

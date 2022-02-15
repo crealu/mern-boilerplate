@@ -1,3 +1,21 @@
+const FormTitle = () => {
+  return (
+    <h2 className="form-title">
+      Sign Up
+    </h2>
+  )
+}
+
+const FormButton = () => {
+  return (
+    <button
+      className="submit-btn"
+      type="submit"
+    >Submit
+    </button>
+  )
+}
+
 const FormField = ({ label }) => {
   return (
     <div className="form-field">
@@ -9,11 +27,12 @@ const FormField = ({ label }) => {
 
 const RegistrationForm = () => {
   return (
-      <form className="registration-form">
-        <FormField label="email"/>
-        <FormField label="password"/>
-        <button type="submit">Register</button>
-      </form>
+    <form className="registration-form">
+      <FormTitle />
+      <FormField label="email"/>
+      <FormField label="password"/>
+      <FormButton />
+    </form>
   )
 }
 
