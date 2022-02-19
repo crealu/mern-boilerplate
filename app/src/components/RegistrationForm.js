@@ -1,7 +1,9 @@
-const FormTitle = () => {
+import { useState } from 'react';
+
+const FormTitle = ({ title }) => {
   return (
     <h2 className="form-title">
-      Sign Up
+      {title}
     </h2>
   )
 }
@@ -25,13 +27,33 @@ const FormField = ({ label }) => {
   )
 }
 
+const FormLink = ({ title, onClick }) => {
+  return (
+    <div
+      className="form-link"
+      onClick={onClick}
+    >
+      {title == 'Log in' ? 'Sign up' : 'Log in'}
+    </div>
+  )
+}
+
 const RegistrationForm = () => {
+  const [formTitle, setFormTitle] = useState('Sign up');
+  function changeTitle() {
+    if (formTitle == 'Sign up') {
+      setFormTitle('Log in');
+    } else {
+      setFormTitle('Sign up');
+    }
+  }
   return (
     <form className="registration-form">
-      <FormTitle />
-      <FormField label="email"/>
-      <FormField label="password"/>
+      <FormTitle title={formTitle} />
+      <FormField label="email" />
+      <FormField label="password" />
       <FormButton />
+      <FormLink title={formTitle} onClick={() => changeTitle()}/>
     </form>
   )
 }
