@@ -4,7 +4,8 @@ This project is a boilerplate for setting up a MERN full stack app. The app's fo
 
 &nbsp;
 ## Requirements
-Node v16.13.1 or later. Node can be obtained from https://nodejs.org/en/
+Node v16.13.1 or later
+https://nodejs.org/en/
 
 &nbsp;
 ## Usage
@@ -20,7 +21,7 @@ This will install all the dependencies listed in the package.json file. Once the
 Navigate to localhost:9000 in your browser to see the frontend rendered by React.
 The interface is being served from a Webpack dev server and updates when
 changes are made to the files in `app/src`. As an experiment, change the color
-in style.css to `lightblue`. 
+in style.css to `lightblue`.
 
 Next, press ctrl+C in the terminal window to terminate the open frontend environment. Bundle your React app frontend and serve it with Node from the backend using the following command:
 ### `npm run devb`

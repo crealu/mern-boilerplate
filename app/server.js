@@ -14,11 +14,18 @@ const app = express();
 // 	});
 // }
 // connectToDB();
-
 const pathToBuild = path.join(__dirname, 'build');
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(pathToBuild));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.get('/', (req, res) => {
 	res.sendFile(pathToBuild, 'index.html');
 });
+
+app.post('/test', (req, res) => {
+	res.send('registration successful');
+	console.log(req.body);
+});
+
 app.listen(port, () => console.log('Listening on ' + port));

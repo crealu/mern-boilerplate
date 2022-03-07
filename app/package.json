@@ -7,8 +7,7 @@
     "start": "node server",
     "build": "webpack --mode=production",
     "devf": "webpack serve --open --hot",
-    "devb": "webpack --mode=production && nodemon server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devb": "nodemon server"
   },
   "keywords": [],
   "author": "",

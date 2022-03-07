@@ -1,10 +1,14 @@
+:root {
+  --form-bg: linear-gradient(135deg, rgba(200, 200, 200, 1) 0%, rgba(150, 150, 150, 1) 100%);
+  --btn-bg: linear-gradient(-45deg, rgba(100, 100, 210, 1) 0%, skyblue 100%);
+}
+
 body {
   font-family: Helvetica;
 }
 
 .page-title {
   text-align: center;
-  color: lightgreen;
   margin-bottom: 40px;
 }
 
@@ -12,15 +16,17 @@ body {
   position: relative;
   display: block;
   margin: 0 auto;
-  width: 350px;
+  width: 380px;
   padding: 30px;
   border-radius: 8px;
-  background: gray;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  background: var(--form-bg);
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.35);
 }
 
 .form-title {
+  font-size: 30px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .form-field {
@@ -48,11 +54,17 @@ body {
   border: none;
   border-radius: 8px;
   font-size: 20px;
-  background: skyblue;
+  background: var(--btn-bg);
+  color: white;
+  filter: brightness(0.9);
   cursor: pointer;
   transition: 0.25s ease;
 }
 
 .submit-btn:hover {
-  background: lightgreen;
+  filter: brightness(1.0);
+}
+
+.form-link {
+  cursor: pointer;
 }
