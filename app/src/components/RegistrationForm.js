@@ -33,7 +33,6 @@ const FormButton = ({ submit }) => {
 const initialFormState = {
   title: 'Sign up',
   linkText: 'Log in',
-  linkUrl: '/login',
   action: '/register',
   question: 'Have an account? '
 };
