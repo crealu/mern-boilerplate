@@ -15,41 +15,44 @@ function iterativeWrite {
 }
 
 function writeServer {
-  constRequires=(
+  serverJS=(
     "const express = require('express');"
+    "const mongoose = require('mongoose');"
+    "const passport = require('passport');"
+    "const cookieParser = require('cookie-parser');";
     "const path = require('path');"
-    "const MongoClient = require('mongodb').MongoClient;"
+    ""
     "const port = process.env.PORT || 9100;"
+    "const uri = require('keyconfig').MongoURI;"
     "const app = express();"
+    "cosnt pathToBuild = path.join(__dirname, './build');"
     ""
-    "// const uri = require('keyconfig').MongoURI;"
-    "// const client = new MongoClient(uri, { useNewUrlParser: true })"
+    "initPassport(passport);"
     ""
-  )
-
-  dbConnection=(
-    "// async function connectToDB() {"
-    "// \tawait client.connect( err => {"
-    "// \t\terr ? console.log(err) : console.log('Connected to database');"
-    "// \t});"
-    "// }"
-    "// connectToDB();"
+    "mongoose.connection(uri, { useNewUrlParser: true, useUnifiedTopology: true })"
+    "/t.then(() => console.log('Connected to database'))"
+    "/t.catch(err => console.log(err));"
     ""
-  )
-
-  appMethods=(
-    "const pathToBuild = path.join(__dirname, 'build');"
-    "app.use(bodyParser.urlencoded({ extended: true }));"
     "app.use(express.static(pathToBuild));"
-    "app.get('/', (req, res) => {"
-    "\tres.sendFile(pathToBuild, 'index.html');"
-    "});"
+    "app.use(express.urlencoded({ extended: false }));"
+    "app.use(express.json());"
+    ""
+    "app.use(session("
+    "\tsecret: 'keyboard cat',"
+    "\tresave: true,"
+    "\tsaveUnintialized: true,"
+    "\tmaxAge: 360000"
+    "));"
+    ""
+    "app.use(passport.initialize());"
+    "app.use(passport.session());"
+    "app.use('/', require('routes/index.js'));"
+    "app.use(cookieParser());"
+    ""
     "app.listen(port, () => console.log('Listening on ' + port));"
   )
 
-  iterativeWrite server.js "${constRequires[@]}"
-  iterativeWrite server.js "${dbConnection[@]}"
-  iterativeWrite server.js "${appMethods[@]}"
+  iterativeWrite server.js "${serverJS[@]}"
 }
 
 function writeWebpackConfig {
@@ -218,6 +221,130 @@ function writeRoutes {
   echo "writing routes/index.js"
 }
 
+function writeModels {
+  userJS=(
+    "const mongoose = require('mongoose');"
+    ""
+    "const UserSchema = new mongoose.Schema({"
+    "\temail: {"
+    "\t\ttype: 'String',"
+    "\t\trequired: true"
+    "\t},"
+    "\tpassword: {"
+    "\t\ttype: 'String',"
+    "\t\trequired: true"
+    "\t}"
+    "});"
+    ""
+    "module.exports = mongoose.model('User', UserSchema);"
+  )
+
+  iterativeWrite models/user.js "${userJS[@]}"
+}
+
+function writeStyle {
+  echo "/**/
+  :root {
+    --form-bg: linear-gradient(135deg, rgba(220, 220, 220, 1) 0%, rgba(160, 160, 160, 1) 100%);
+    --btn-bg: linear-gradient(-45deg, rgba(100, 100, 210, 1) 0%, skyblue 100%);
+  }
+
+  body {
+    font-family: Helvetica;
+  }
+
+  .page-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .registration-form {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 420px;
+    height: 440px;
+    padding: 40px;
+    border-radius: 8px;
+    background: var(--form-bg);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .form-title {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+  }
+
+  .form-field {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .form-field label {
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  .form-field input {
+    font-size: 20px;
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+  }
+
+  .error-msg {
+    font-size: 14px;
+    margin: 5px 0px 26px 0px;
+    color: #ef3434;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 10px 16px;
+    margin: 30px 0px;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    background: var(--btn-bg);
+    color: white;
+    filter: brightness(0.9);
+    cursor: pointer;
+    transition: 0.25s ease;
+  }
+
+  .submit-btn:hover {
+    filter: brightness(1.0);
+  }
+
+  .have-acct {
+    text-align: center;
+    margin: 0px;
+  }
+
+  .form-link {
+    color: black;
+    text-decoration: none;
+  }
+
+  .form-link:hover {
+    text-decoration: underline;
+  }
+
+  .registration-response {
+    position: relative;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    width: 420px;
+    border-radius: 6px;
+    top: 80px;
+  }
+  " >> src/style.css
+}
+
 function writeFiles {
   writeBabelRC
   writeServer
@@ -226,6 +353,7 @@ function writeFiles {
   writeSrc
   writeRoutes
   writeModels
+  writeStyle
   updatePackageJSON
   echo "Finished writing files"
 }
