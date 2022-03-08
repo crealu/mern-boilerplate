@@ -23,10 +23,15 @@ The interface is being served from a Webpack dev server and updates when
 changes are made to the files in `app/src`. As an experiment, change the color
 in style.css to `lightblue`.
 
-Next, press ctrl+C in the terminal window to terminate the open frontend environment. Bundle your React app frontend and serve it with Node from the backend using the following command:
+Next, press ctrl+C in the terminal window to terminate the open frontend environment.
+Bundle your React app frontend using:
+### `npm run build`
+
+When React finishes bundling, serve it with Node from the backend using the following command:
 ### `npm run devb`
 
-Once the build succeeds, Node will serve the frontend and it becomes viewable. Visit localhost:9100 in your browser window to view the full stack application.
+Once the build succeeds, Node will serve the frontend and it becomes viewable.
+Visit localhost:9100 in your browser window to view the full stack application.
 
 &nbsp;
 ## Connect to a database
