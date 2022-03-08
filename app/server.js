@@ -1,31 +1,37 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const path = require('path');
-const MongoClient = require('mongodb').MongoClient;
+
+const { initPassport } = require('./config/passport');
+const uri = require('./config/keys').MongoURI;
 const port = process.env.PORT || 9100;
 const app = express();
+const pathToBuild = path.join(__dirname, './build');
 
-// const uri = require('keyconfig').MongoURI;
-// const client = new MongoClient(uri, { useNewUrlParser: true })
+initPassport(passport);
 
-// async function connectToDB() {
-// 	await client.connect( err => {
-// 		err ? console.log(err) : console.log('Connected to database');
-// 	});
-// }
-// connectToDB();
-const pathToBuild = path.join(__dirname, 'build');
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+	.then(() => console.log('Connected to database'))
+	.catch(err => console.log(err))
+
 app.use(express.static(pathToBuild));
-
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.get('/', (req, res) => {
-	res.sendFile(pathToBuild, 'index.html');
-});
 
-app.post('/test', (req, res) => {
-	res.send('registration successful');
-	console.log(req.body);
-});
+app.use(session({
+	secret: 'keyboard cat',
+	resave: true,
+	saveUninitialized: true,
+	maxAge: 360000
+}));
 
-app.listen(port, () => console.log('Listening on ' + port));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/', require('./routes/index'));
+app.use(cookieParser());
+
+app.listen(port, () => console.log(`Listening on ${port}`));

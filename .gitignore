@@ -3,4 +3,5 @@
 /app/test2.sh
 /src
 /boilAppSkel.sh
+/app/config/keys.js
 .DS_Store

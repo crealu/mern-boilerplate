@@ -10,7 +10,6 @@ function writeBabelRC {
 function writeServerJS {
   constRequires=(
     "const express = require('express');"
-    "const bodyParser = require('body-parser');"
     "const path = require('path');"
     "const MongoClient = require('mongodb').MongoClient;"
     "const port = process.env.PORT || 9100;"
@@ -121,6 +120,7 @@ function writeSrcFiles {
     '<html lang="en">'
     '<head>'
     '\t<meta charset="UTF-8">'
+    '\t<meta name="viewport" content="width=device-width, initial-scale=1">'
     '\t<title>MERN App</title>'
     '</head>'
     '<body>'
