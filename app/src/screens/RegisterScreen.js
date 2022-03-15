@@ -20,7 +20,8 @@ const FormField = ({ label, error, onChange }) => {
   )
 }
 
-const RegisterScreen = ({ email }) => {
+const RegisterScreen = () => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');

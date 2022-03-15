@@ -7,8 +7,7 @@ import LandingPage from './screens/LandingPage';
 import Navigation from './components/Navigation';
 
 const App = () => {
-	const [userAuthenticated, setUserAuthenticated] = useState(true);
-	const [email, setEmail] = useState('');
+	const [userAuthenticated, setUserAuthenticated] = useState(false);
 
 	return (
 		<div>
