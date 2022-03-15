@@ -13,6 +13,14 @@ router.get('/', (req, res) => {
 	res.sendFile('index.html', {root: './build'});
 });
 
+router.get('/register', (req, res) => {
+	res.sendFile('index.html', { root: './build'});
+});
+
+router.get('/login', (req, res) => {
+	res.sendFile('index.html', { root: './build'});
+});
+
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   res.sendFile('index.html', {root: './build'});
 });

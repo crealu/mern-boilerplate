@@ -47,9 +47,6 @@ const RegisterScreen = () => {
         const type = data != undefined ? data[0].type : '';
         setResponseMessage(data[0].msg);
         console.log(data[0]);
-        if (type == 'failure') {
-          dispatch({type: 'Log in'});
-        }
       });
     }
   }
