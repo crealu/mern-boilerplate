@@ -4,6 +4,7 @@ const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const dotenv = require('dotenv').config();
 
 const { initPassport } = require('./config/passport');
 const uri = require('./config/keys').MongoURI;
@@ -22,16 +23,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(session({
-	secret: 'keyboard cat',
+	secret: process.env.SESSION_SECRET,
 	resave: true,
 	saveUninitialized: true,
-	maxAge: 360000
+	cookie: {
+		httpOnly: true,
+		maxAge: parseInt(process.env.SESSION_MAX_AGE)
+	}
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cookieParser());
 
 app.use('/', require('./routes/index'));
-app.use(cookieParser());
 
 app.listen(port, () => console.log(`Listening on ${port}`));

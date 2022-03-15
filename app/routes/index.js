@@ -14,9 +14,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  res.cookie();
   res.sendFile('index.html', {root: './build'});
-})
+});
 
 router.post('/register', (req, res) => {
   const { email, password } = req.body;
@@ -55,20 +54,52 @@ function successfulLogin(req, res) {
     type: 'success',
     msg: 'Login successful, welcome ' + req.body.email
   }]);
+	return '/dashboard';
 }
 
 function failedLogin(res) {
-  res.send([{
-    type: 'failure',
-    msg: 'Invalid email/password'
-  }]);
+	return '/login';
+  // res.send([{
+  //   type: 'failure',
+  //   msg: 'Invalid email/password'
+  // }]);
 }
 
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: successfulLogin(req, res),
-    failureRedirect: failedLogin(res),
-  })(req, res, next);
+router.post('/login',
+	passport.authenticate('local', {
+		failureRedirect: '/'
+	}),
+	(req, res) => {
+		if (req.user || req.session.user) {
+			return res.redirect('/dashboard');
+		}
+		return res.redirect('/');
+		// if (req.user) {
+		// 	console.log('Login successful: ' + req.user);
+		// 	res.send([{
+		// 		type: 'success',
+		// 		msg: 'Login successful, welcome ' + req.body.email
+		// 	}]);
+		// } else {
+		// 	console.log('Login unsuccessful: ' + req.user);
+		// 	res.send([{
+		// 	  type: 'failure',
+		//     msg: 'Invalid email/password'
+		// 	}]);
+		// }
+	}
+);
+
+// router.post('/login', (req, res, next) => {
+//   passport.authenticate('local', {
+//     successRedirect: '/dashboard',
+//     failureRedirect: '/login',
+//   })(req, res, next);
+// });
+
+router.post('/logout', (req, res) => {
+	req.logout();
+	res.redirect('/');
 });
 
 module.exports = router;

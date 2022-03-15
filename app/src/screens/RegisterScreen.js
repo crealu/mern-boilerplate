@@ -1,4 +1,5 @@
-import { useState, useReducer } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const FormField = ({ label, error, onChange }) => {
   function capitalizeLabel() {
@@ -19,55 +20,14 @@ const FormField = ({ label, error, onChange }) => {
   )
 }
 
-const FormButton = ({ submit }) => {
-  return (
-    <button
-      className="submit-btn"
-      onClick={submit}
-    >
-      Submit
-    </button>
-  )
-}
-
-const initialFormState = {
-  title: 'Sign up',
-  linkText: 'Log in',
-  action: '/register',
-  question: 'Have an account? '
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'Log in':
-      return {
-        title: 'Log in',
-        linkText: 'Sign up',
-        action: '/login',
-        question: "Don't have an account? "
-      }
-    case 'Sign up':
-      return {
-        title: 'Sign up',
-        linkText: 'Log in',
-        action: '/register',
-        question: "Have an account? "
-      }
-    default:
-      throw new Error();
-  }
-}
-
-const RegistrationForm = () => {
-  const [email, setEmail] = useState('');
+const RegisterScreen = ({ email }) => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
-  const [formData, dispatch] = useReducer(reducer, initialFormState);
 
   async function register() {
-    return await fetch(formData.action, {
+    return await fetch('/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -85,6 +45,7 @@ const RegistrationForm = () => {
         const msg = data != undefined ? data[0].msg : '';
         const type = data != undefined ? data[0].type : '';
         setResponseMessage(data[0].msg);
+        console.log(data[0]);
         if (type == 'failure') {
           dispatch({type: 'Log in'});
         }
@@ -110,7 +71,7 @@ const RegistrationForm = () => {
 
   return (
     <div className="registration-form">
-      <h2 className="form-title">{formData.title}</h2>
+      <h2 className="form-title">Sign up</h2>
       <FormField
         label="email"
         error={emailError}
@@ -121,15 +82,16 @@ const RegistrationForm = () => {
         error={passwordError}
         onChange={(e) => updatePassword(e.target.value)}
       />
-      <FormButton submit={() => submitRegistration()}/>
+
+      <button
+        className="submit-btn"
+        onClick={() => submitRegistration()}
+      >
+        Submit
+      </button>
       <p className="have-acct">
-        <span>{formData.question}</span>
-        <a
-          className="form-link"
-          onClick={() => dispatch({type: formData.linkText})}
-        >
-          {formData.linkText}
-        </a>
+        <span>Have an account? </span>
+        <Link to="/login">Login</Link>
       </p>
       <p
         className="registration-response"
@@ -148,4 +110,4 @@ const RegistrationForm = () => {
   )
 }
 
-export default RegistrationForm;
+export default RegisterScreen;
