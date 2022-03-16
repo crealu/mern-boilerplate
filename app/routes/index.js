@@ -10,19 +10,20 @@ const mongo = mongoose.connection;
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	res.sendFile('index.html', {root: './build'});
+	res.sendFile('index.html', { root: './build' });
 });
 
 router.get('/register', (req, res) => {
-	res.sendFile('index.html', { root: './build'});
+	res.sendFile('index.html', { root: './build' });
 });
 
 router.get('/login', (req, res) => {
-	res.sendFile('index.html', { root: './build'});
+	res.sendFile('index.html', { root: './build' });
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  res.sendFile('index.html', {root: './build'});
+	res.set('Content-Type', 'text/plain');
+  res.sendFile('index.html', { root: './build' });
 });
 
 router.post('/register', (req, res) => {
@@ -38,6 +39,7 @@ router.post('/register', (req, res) => {
         res.send(errors);
       } else {
         const newUser = new User({ email, password });
+				console.log(newUser);
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
@@ -57,53 +59,26 @@ router.post('/register', (req, res) => {
     })
 });
 
-function successfulLogin(req, res) {
-  res.send([{
-    type: 'success',
-    msg: 'Login successful, welcome ' + req.body.email
-  }]);
+function successfulLogin() {
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	return '/dashboard';
 }
 
-function failedLogin(res) {
-	return '/login';
-  // res.send([{
-  //   type: 'failure',
-  //   msg: 'Invalid email/password'
-  // }]);
-}
-
 router.post('/login',
-	passport.authenticate('local', {
-		failureRedirect: '/'
-	}),
-	(req, res) => {
-		if (req.user || req.session.user) {
-			return res.redirect('/dashboard');
-		}
-		return res.redirect('/');
-		// if (req.user) {
-		// 	console.log('Login successful: ' + req.user);
-		// 	res.send([{
-		// 		type: 'success',
-		// 		msg: 'Login successful, welcome ' + req.body.email
-		// 	}]);
-		// } else {
-		// 	console.log('Login unsuccessful: ' + req.user);
-		// 	res.send([{
-		// 	  type: 'failure',
-		//     msg: 'Invalid email/password'
-		// 	}]);
-		// }
+  passport.authenticate('local', { failureRedirect: '/login' }),
+	function (req, res) {
+		// router.use(express.json());
+
+		res.redirect('/dashboard');
 	}
 );
-
 // router.post('/login', (req, res, next) => {
 //   passport.authenticate('local', {
-//     successRedirect: '/dashboard',
+//     successRedirect: successfulLogin(),
 //     failureRedirect: '/login',
 //   })(req, res, next);
 // });
+
 
 router.post('/logout', (req, res) => {
 	req.logout();

@@ -19,11 +19,12 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 	.catch(err => console.log(err))
 
 app.use(express.static(pathToBuild));
-app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(session({
-	secret: process.env.SESSION_SECRET,
+	secret: 'keyboard cat',
 	resave: true,
 	saveUninitialized: true,
 	cookie: {
@@ -34,7 +35,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cookieParser());
 
 app.use('/', require('./routes/index'));
 

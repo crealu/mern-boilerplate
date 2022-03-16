@@ -27,8 +27,8 @@ const LoginScreen = () => {
   const [passwordError, setPasswordError] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
 
-  async function login() {
-    return await fetch('/login', {
+  function login() {
+    return fetch('/login', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -45,8 +45,11 @@ const LoginScreen = () => {
       login().then(data => {
         const msg = data != undefined ? data[0].msg : '';
         const type = data != undefined ? data[0].type : '';
-        setResponseMessage(data[0].msg);
-        console.log(data[0]);
+        if (type == 'success') {
+          window.location = '/dashboard';
+        }
+        // setResponseMessage(data[0].msg);
+        console.log(data);
       });
     }
   }

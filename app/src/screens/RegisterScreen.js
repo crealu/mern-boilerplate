@@ -36,7 +36,7 @@ const RegisterScreen = () => {
         password: password
       }),
     })
-    .then(res => { return res.json() })
+    .then(res => { return JSON.parse(JSON.stringify(res.json())) })
     .catch(err => console.error(err))
   }
 
@@ -45,6 +45,9 @@ const RegisterScreen = () => {
       register().then(data => {
         const msg = data != undefined ? data[0].msg : '';
         const type = data != undefined ? data[0].type : '';
+        if (type == 'success') {
+          setTimeout(() => { window.location = '/login' }, 1000);
+        }
         setResponseMessage(data[0].msg);
         console.log(data[0]);
       });
