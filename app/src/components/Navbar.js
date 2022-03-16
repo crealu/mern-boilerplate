@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
 
-const Navigation = () => {
+const Navbar = () => {
   return (
-    <div className="navigation">
+    <div className="navbar">
 			<Link to="/">Home</Link>
 			<Link to="/register">Register</Link>
 			<Link to="/login">Login</Link>
-			<Link to="/dashboard">Dashboard</Link>
     </div>
   )
 }
 
-export default Navigation;
+export default Navbar;

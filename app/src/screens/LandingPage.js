@@ -1,9 +1,9 @@
 
 const LandingPage = () => {
   return (
-    <div>
-      Welcome to the landing Page!
-    </div>
+    <h1 className="home-title">
+      MERN Boilerplate Home
+    </h1>
   )
 }
 

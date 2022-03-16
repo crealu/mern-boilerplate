@@ -7,6 +7,23 @@ body {
   font-family: Helvetica;
 }
 
+.navbar {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+.home-title {
+  text-align: center;
+}
+
 .page-title {
   text-align: center;
   margin-bottom: 40px;
