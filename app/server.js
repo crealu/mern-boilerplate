@@ -20,8 +20,8 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(express.static(pathToBuild));
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
 	secret: 'keyboard cat',

@@ -36,7 +36,7 @@ const RegisterScreen = () => {
         password: password
       }),
     })
-    .then(res => { return JSON.parse(JSON.stringify(res.json())) })
+    .then(res => { return res.json() })
     .catch(err => console.error(err))
   }
 

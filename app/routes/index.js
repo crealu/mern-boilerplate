@@ -22,24 +22,22 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-	res.set('Content-Type', 'text/plain');
+	res.cookie('user', req.body.email);
+	res.set('Content-Type', 'text/html');
   res.sendFile('index.html', { root: './build' });
 });
 
 router.post('/register', (req, res) => {
   const { email, password } = req.body;
-  let errors = [];
   User.findOne({ email: email })
     .then(user => {
       if (user) {
-        errors.push({
-          type: 'failure',
-          msg: 'An account with that email already exists'
-        });
-        res.send(errors);
+				res.send([{
+					type: 'failure',
+					msg: 'An account with that email already exists'
+				}])
       } else {
         const newUser = new User({ email, password });
-				console.log(newUser);
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
@@ -48,9 +46,8 @@ router.post('/register', (req, res) => {
               .then(user => {
                 res.send([{
                   type: 'success',
-                  msg: 'Registration successful! Redirecting...'
+                  msg: 'Registration successful! Redirecting to login...'
                 }]);
-                console.log(user);
               })
               .catch(err => console.log(err));
           })
@@ -67,11 +64,14 @@ function successfulLogin() {
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
 	function (req, res) {
-		// router.use(express.json());
-
-		res.redirect('/dashboard');
+		res.send([{
+			type: 'success',
+			msg: 'Log in successful, welcome ' + req.body.email,
+			user: req.body.email
+		}]);
 	}
 );
+
 // router.post('/login', (req, res, next) => {
 //   passport.authenticate('local', {
 //     successRedirect: successfulLogin(),

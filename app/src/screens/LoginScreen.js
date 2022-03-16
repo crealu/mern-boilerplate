@@ -20,7 +20,7 @@ const FormField = ({ label, error, onChange }) => {
   )
 }
 
-const LoginScreen = () => {
+const LoginScreen = ({ updateUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -45,10 +45,12 @@ const LoginScreen = () => {
       login().then(data => {
         const msg = data != undefined ? data[0].msg : '';
         const type = data != undefined ? data[0].type : '';
-        if (type == 'success') {
-          window.location = '/dashboard';
+        setResponseMessage(data[0].msg);
+        if (data[0].user) {
+          updateTheUser(data[0].user);
+          console.log(data[0].user);
+          // setTimeout(() => { window.location = '/dashboard' }, 1000);
         }
-        // setResponseMessage(data[0].msg);
         console.log(data);
       });
     }
@@ -68,6 +70,10 @@ const LoginScreen = () => {
       : '';
     setPasswordError(error);
     setPassword(passwordValue);
+  }
+
+  function updateTheUser(u) {
+    updateUser(u);
   }
 
   return (
@@ -106,6 +112,12 @@ const LoginScreen = () => {
         }}
       >
         {responseMessage}
+      </p>
+      <p>Navigate to
+        {responseMessage.includes('success')
+          ? <Link to="/dashboard">Dash</Link>
+          : ''
+        }
       </p>
     </div>
   )

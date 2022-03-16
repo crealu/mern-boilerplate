@@ -7,7 +7,12 @@ import LandingPage from './screens/LandingPage';
 import Navbar from './components/Navbar';
 
 const App = () => {
-	const [userAuthenticated, setUserAuthenticated] = useState(false);
+	const [username, setUsername] = useState('');
+
+	function updateUsername(theUsername) {
+		setUsername(theUsername);
+		console.log('user updated');
+	}
 
 	return (
 		<div>
@@ -24,11 +29,11 @@ const App = () => {
 					/>
 					<Route
 						path="login"
-						element={<LoginScreen />}
+						element={<LoginScreen updateUser={updateUsername} />}
 					/>
 					<Route
 						path="dashboard"
-						element={<UserDashboard />}
+						element={<UserDashboard email={username} />}
 					/>
 				</Routes>
 			</Router>
