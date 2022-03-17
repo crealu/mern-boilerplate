@@ -35,6 +35,10 @@ const App = () => {
 						path="dashboard"
 						element={<UserDashboard email={username} />}
 					/>
+					<Route
+						path="logout"
+						element={<LandingPage />}
+					/>
 				</Routes>
 			</Router>
 		</div>

@@ -22,7 +22,6 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-	res.cookie('user', req.body.email);
 	res.set('Content-Type', 'text/html');
   res.sendFile('index.html', { root: './build' });
 });
@@ -79,9 +78,8 @@ router.post('/login',
 //   })(req, res, next);
 // });
 
-
-router.post('/logout', (req, res) => {
-	req.logout();
+router.get('/logout', (req, res) => {
+	res.clearCookies('connect.sid');
 	res.redirect('/');
 });
 

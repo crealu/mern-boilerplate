@@ -49,7 +49,6 @@ const LoginScreen = ({ updateUser }) => {
         if (data[0].user) {
           updateTheUser(data[0].user);
           console.log(data[0].user);
-          // setTimeout(() => { window.location = '/dashboard' }, 1000);
         }
         console.log(data);
       });
@@ -113,12 +112,10 @@ const LoginScreen = ({ updateUser }) => {
       >
         {responseMessage}
       </p>
-      <p>Navigate to
-        {responseMessage.includes('success')
-          ? <Link to="/dashboard">Dash</Link>
-          : ''
-        }
-      </p>
+      {responseMessage.includes('success')
+        ? <p>Navigate to <Link to="/dashboard">your dashboard</Link></p>
+        : ''
+      }
     </div>
   )
 }
