@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RegisterScreen from './screens/RegisterScreen';
 import LoginScreen from './screens/LoginScreen';
 import UserDashboard from './screens/UserDashboard';
@@ -13,6 +13,10 @@ const App = () => {
 		setUsername(theUsername);
 		console.log('user updated');
 	}
+
+	useEffect(() => {
+		console.log(window);
+	}, []);
 
 	return (
 		<div>
