@@ -51,15 +51,3 @@ Finally, uncomment the require statements in the server.js file.
 
 Once the database connection step is complete, start the server by running
 `npm run dev` in the terminal window inside `server`
-
-&nbsp;
-## Use as a terminal command
-The saveAsCmd.sh script creates a custom terminal command that can be run in any directory from the terminal.
-This created command can be used to then create a full stack application with filled in files and installed dependencies whenever you like.
-Run the following command in the terminal to create this command:
-### `sh createTerminalCommand.sh`
-
-To use in any directory, run:
-### `generateApp`
-
-If you receive the error `command not found: generateApp`, you will need to change zshrc to bashrc in the createTerminalCommand.sh file.
