@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const User = require('../models/user');
 const router = express.Router();
 
-const atlas = mongoose.connection;
-
 router.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   User.findOne({ username: username })
@@ -18,11 +16,9 @@ router.post('/api/login', (req, res) => {
         if (err) throw err;
         if (match) {
           req.session.isAuth = true;
-          atlas.db.collection('sessions').insertOne(req.session);
           res.status(200).json({
             id: user.id,
             username: username,
-            sessionId: 'a session id',
             message: 'Login successful, redirecting to dashboard..'
           })
         } else {
