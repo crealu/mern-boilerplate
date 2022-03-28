@@ -8,9 +8,13 @@ node v16.13.1 or later
 npm
 
 &nbsp;
-## Setup
+## Usage
+This project can be used as a basic structure from which a full stack web app
+can be developed.
+It is meant to be small with the minimal amount of boilerplate code.
 
-To use this project:
+&nbsp;
+## Setup
 1. Clone this repository
 2. Open a terminal window if you haven't already
 3. Navigate to `server` and run `npm install`
@@ -20,9 +24,11 @@ This will install all the dependencies listed in the package.json files of each
 directory. Once the installations are complete, in the same terminal window,
 run the following command `npm run dev`.
 
+
 Navigate to localhost:8080 in your browser to see the frontend rendered by React.
 The interface is being served from a Webpack dev server and updates when
 changes are made to the files in `client/src`.
+
 
 Next, press ctrl+C in the terminal window to terminate the open frontend environment.
 Bundle your React app frontend using `npm run build`.
