@@ -1,6 +1,6 @@
 # A MERN Boilerplate
-This project contains boilerplate code and files that for developing a web
-application with MongoDB, Express, React, and Node (MERN).
+This project contains boilerplate code and files for developing a web
+application that uses MongoDB, Express, React, and Node (MERN).
 
 &nbsp;
 ## Requirements
@@ -11,7 +11,7 @@ npm
 ## Usage
 This project can be used as a basic structure from which a full stack web app
 can be developed.
-It is meant to be small with the minimal amount of boilerplate code.
+It is meant to be small with a minimal amount of boilerplate code.
 
 &nbsp;
 ## Setup
