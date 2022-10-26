@@ -1,3 +1,3 @@
 module.exports = {
-  SessionsURI: 'mongodb+srv://user:password@cluster0.3w8fw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+  SessionsURI: 'mongodb+srv://seshuser1:theseshuser@cluster0.3w8fw.mongodb.net/easysesh?retryWrites=true&w=majority'
 }

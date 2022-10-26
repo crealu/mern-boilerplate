@@ -8,7 +8,7 @@ const app = express();
 mongoose
   .connect(sessionsURI, {useUnifiedTopology: true, useNewUrlParser: true})
   .then(() => console.log('Connected to Database'))
-  .catch(err => console.log(error));
+  .catch(err => console.log(err));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
