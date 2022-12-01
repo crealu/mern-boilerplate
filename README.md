@@ -4,8 +4,7 @@ application that uses MongoDB, Express, React, and Node (MERN).
 
 &nbsp;
 ## Requirements
-node v16.13.1 or later
-npm
+node/npm
 
 &nbsp;
 ## Usage
